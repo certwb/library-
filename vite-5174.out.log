@@ -1,0 +1,75 @@
+
+> book-recommendation-mvp@0.1.0 dev
+> vite --host 0.0.0.0 --port 5174 --host 0.0.0.0 --strictPort
+
+
+  [32m[1mVITE[22m v7.3.3[39m  [2mready in [0m[1m338[22m[2m[0m ms[22m
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5174[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://26.130.19.47:[1m5174[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.0.102:[1m5174[22m/[39m
+[2m12:02:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/components/RecommendationCarousel.jsx, /src/index.css[22m
+[2m12:02:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m12:02:58[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/RecommendationCarousel.jsx[22m
+[2m12:02:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ShelfActions.jsx[22m
+[2m12:02:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/components/Bookshelf.jsx, /src/components/ShelfActions.jsx, /src/index.css[22m
+[2m12:02:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/BookModal.jsx, /src/index.css[22m
+[2m12:02:59[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/HeroSearch.jsx, /src/index.css[22m
+[2m12:04:08[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/BookCover.jsx[22m
+[2m12:12:50[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/App.jsx, /src/components/RecommendationCarousel.jsx[22m
+[2m12:13:06[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/components/Bookshelf.jsx, /src/components/ShelfActions.jsx, /src/index.css[22m
+[2m12:15:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m12:15:27[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m12:15:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ShelfActions.jsx[22m
+[2m12:15:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ShelfActions.jsx[22m
+[2m12:16:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/BookModal.jsx, /src/index.css[22m
+[2m12:16:25[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/BookModal.jsx, /src/index.css[22m
+[2m12:16:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/RecommendationCarousel.jsx[22m
+[2m12:16:53[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/RecommendationCarousel.jsx[22m
+[2m12:17:49[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m12:18:05[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m12:18:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/BookCard.jsx, /src/index.css[22m
+[2m12:18:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/BookCard.jsx, /src/index.css[22m
+[2m15:22:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m15:23:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/HeroSearch.jsx, /src/index.css[22m
+[2m15:34:18[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/HeroSearch.jsx, /src/App.jsx, /src/components/RecommendationCarousel.jsx[22m
+[2m15:34:32[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/HeroSearch.jsx, /src/index.css[22m
+[2m15:34:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/HeroSearch.jsx, /src/index.css[22m
+[2m15:57:13[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m15:57:22[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:33:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:55:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m17:56:03[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:56:12[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:57:57[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:58:07[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:58:15[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m17:58:31[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m18:46:26[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/HeroSearch.jsx, /src/index.css[22m
+[2m18:46:35[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m18:48:28[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/Header.jsx, /src/index.css[22m
+[2m18:48:37[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m18:54:33[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/HeroSearch.jsx, /src/index.css[22m
+[2m18:54:42[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m18:56:47[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m19:15:54[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/App.jsx, /src/index.css[22m
+[2m19:19:30[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/BookModal.jsx, /src/index.css[22m
+[2m19:31:47[22m [36m[1m[vite][22m[39m [32mvite.config.js changed, restarting server...[39m
+[2m19:31:47[22m [36m[1m[vite][22m[39m server restarted.
+
+  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5174[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://26.130.19.47:[1m5174[22m/[39m
+  [32m➜[39m  [1mNetwork[22m: [36mhttp://192.168.0.106:[1m5174[22m/[39m
+[2m21:18:22[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:18:22[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:18:22[22m [36m[1m[vite][22m[39m server restarted.
+[2m21:22:24[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:22:24[22m [36m[1m[vite][22m[39m server restarted.
+[2m21:22:27[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:22:27[22m [36m[1m[vite][22m[39m server restarted.
+[2m21:23:09[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:23:09[22m [36m[1m[vite][22m[39m server restarted.
+[2m21:45:34[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:45:34[22m [36m[1m[vite][22m[39m server restarted.
+[2m21:46:05[22m [36m[1m[vite][22m[39m [32m.env.local changed, restarting server...[39m
+[2m21:46:05[22m [36m[1m[vite][22m[39m server restarted.

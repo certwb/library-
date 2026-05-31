@@ -135,32 +135,27 @@ class AIChatConsumer(AsyncWebsocketConsumer):
                             "content": json.dumps(found_books, ensure_ascii=False)
                         })
                 
-                # Теперь стримим финальный ответ с результатами поиска
-                stream_response = await client.chat.completions.create(
+                # Теперь отправляем финальный ответ без стриминга
+                response = await client.chat.completions.create(
                     model="gpt-4o-mini",
                     messages=messages,
-                    stream=True
+                    stream=False
                 )
             else:
-                # Если функция не нужна, пересоздаем запрос как потоковый
-                stream_response = await client.chat.completions.create(
+                # Если функция не нужна, отправляем обычный запрос
+                response = await client.chat.completions.create(
                     model="gpt-4o-mini",
                     messages=messages,
-                    stream=True
+                    stream=False
                 )
             
-            full_assistant_message = ""
+            full_assistant_message = response.choices[0].message.content or ""
             
-            # Отправка чанков клиенту
-            async for chunk in stream_response:
-                content = chunk.choices[0].delta.content
-                if content:
-                    full_assistant_message += content
-                    await self.send(text_data=json.dumps({
-                        'type': 'stream_chunk',
-                        'content': content
-                    }))
-                    
+            # Отправляем полный ответ одним сообщением
+            await self.send(text_data=json.dumps({
+                'type': 'stream_chunk',
+                'content': full_assistant_message
+            }))
             await self.send(text_data=json.dumps({'type': 'stream_end'}))
             
             await sync_to_async(ChatMessage.objects.create)(

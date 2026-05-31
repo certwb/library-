@@ -115,8 +115,8 @@ export function AIChatWidget({ onOpenBook }) {
       for (const msg of chatMessages) {
         if (msg.role === 'assistant' && msg.content === "") continue;
 
-        let text = msg.content;
-        text = text.replace(/\[CHIP:.*?\]/g, '').replace(/\[BOOK:.*?\]/g, '').replace(/\[TICKET_FORM\]/g, '').trim();
+        let text = String(msg.content);
+        text = text.replace(/\[CHIP:[\s\S]*?\]/g, '').replace(/\[BOOK:[\s\S]*?\]/g, '').replace(/\[TICKET_FORM\]/g, '').trim();
         if (!text) continue;
 
         validContents.push({
@@ -129,13 +129,12 @@ export function AIChatWidget({ onOpenBook }) {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`,
-          "Accept": "text/event-stream"
+          "Authorization": `Bearer ${apiKey}`
         },
         body: JSON.stringify({
           model: "command-a-plus-05-2026",
           messages: validContents,
-          stream: true
+          stream: false
         })
       });
 
@@ -146,65 +145,24 @@ export function AIChatWidget({ onOpenBook }) {
         throw new Error("API Error: " + response.statusText);
       }
 
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder("utf-8");
+      const data = await response.json();
       
       let fullText = "";
-      let displayedText = "";
-      
-      const typeInterval = setInterval(() => {
-        if (displayedText.length < fullText.length) {
-          const backlog = fullText.length - displayedText.length;
-          // Динамическая скорость печати для плавности: если накопилось много текста, печатаем быстрее
-          let step = 1;
-          if (backlog > 5) step = 2;
-          if (backlog > 20) step = 5;
-          if (backlog > 50) step = 10;
-          
-          const nextLength = Math.min(fullText.length, displayedText.length + step);
-          displayedText = fullText.substring(0, nextLength);
-          
-          setMessages(prev => {
-            const newMsgs = [...prev];
-            const lastIndex = newMsgs.length - 1;
-            newMsgs[lastIndex] = { ...newMsgs[lastIndex], content: displayedText };
-            return newMsgs;
-          });
-        }
-      }, 30);
-
-      let buffer = "";
-
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        
-        buffer += decoder.decode(value, { stream: true });
-        const lines = buffer.split('\n');
-        buffer = lines.pop(); // Оставляем последнюю незавершенную строку в буфере
-        
-        for (const line of lines) {
-          if (line.startsWith('data: ')) {
-            const dataStr = line.slice(6).trim();
-            if (dataStr === '[DONE]') continue;
-            try {
-              const data = JSON.parse(dataStr);
-              if (data.type === 'content-delta' && data.delta?.message?.content?.text) {
-                fullText += data.delta.message.content.text;
-              }
-            } catch (e) {}
-          }
-        }
+      if (data.message && Array.isArray(data.message.content)) {
+        fullText = data.message.content.map(c => c.text || "").join("");
+      } else if (data.message && typeof data.message.content === "string") {
+        fullText = data.message.content;
+      } else if (data.text) {
+        fullText = data.text;
+      } else {
+        fullText = JSON.stringify(data.message || data);
       }
       
-      await new Promise(resolve => {
-        const checkDone = setInterval(() => {
-          if (displayedText.length >= fullText.length) {
-            clearInterval(checkDone);
-            clearInterval(typeInterval);
-            resolve();
-          }
-        }, 50);
+      setMessages(prev => {
+        const newMsgs = [...prev];
+        const lastIndex = newMsgs.length - 1;
+        newMsgs[lastIndex] = { ...newMsgs[lastIndex], content: fullText };
+        return newMsgs;
       });
     } catch (e) {
       console.error(e);
@@ -257,23 +215,24 @@ export function AIChatWidget({ onOpenBook }) {
   };
 
   const renderMessageContent = (content) => {
+    if (!content) return null;
     // Lookahead Masking: Скрываем недописанные теги в конце строки при стриминге
-    let displayContent = content;
+    let displayContent = String(content);
     const openTagRegex = /\[[^\]]*$/;
     displayContent = displayContent.replace(openTagRegex, "");
 
-    const tokenRegex = /(\[CHIP:\s*.+?\]|\[BOOK:\s*\{.*?\}\]|\[TICKET_FORM\])/g;
+    const tokenRegex = /(\[CHIP:\s*[\s\S]+?\s*\]|\[BOOK:\s*\{[\s\S]*?\}\s*\]|\[TICKET_FORM\])/g;
     const parts = displayContent.split(tokenRegex);
 
     return parts.map((part, index) => {
       if (!part) return null;
 
-      const chipMatch = part.match(/^\[CHIP:\s*(.+?)\]$/);
+      const chipMatch = part.match(/^\[CHIP:\s*([\s\S]+?)\s*\]$/);
       if (chipMatch) {
         return <ChatChip key={index} text={chipMatch[1]} onClick={handleChipClick} />;
       }
 
-      const bookMatch = part.match(/^\[BOOK:\s*(\{.*?\})\]$/);
+      const bookMatch = part.match(/^\[BOOK:\s*(\{[\s\S]*?\})\s*\]$/);
       if (bookMatch) {
         try {
           const bookData = JSON.parse(bookMatch[1]);

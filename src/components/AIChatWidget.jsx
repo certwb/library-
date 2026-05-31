@@ -421,7 +421,7 @@ export function AIChatWidget({ onOpenBook }) {
                     {msg.role === "assistant" ? (
                       <div>{renderMessageContent(msg.content)}</div>
                     ) : (
-                      <p className="whitespace-pre-wrap">{msg.content}</p>
+                      <div className="whitespace-pre-wrap">{renderMessageContent(msg.content)}</div>
                     )}
                   </div>
                 </div>

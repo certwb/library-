@@ -78,16 +78,22 @@ export function AIChatWidget({ onOpenBook }) {
     if (!text.trim() || isTyping) return;
 
     const userMsg = { role: "user", content: text.trim() };
+    
     setMessages(prev => {
       const newMessages = [...prev, userMsg];
       
-      if (socket && socket.readyState === WebSocket.OPEN) {
-        socket.send(JSON.stringify({ message: userMsg.content }));
-      } else {
-        callCohereAPI(newMessages);
-      }
+      // Выполняем побочные эффекты вне цикла рендера React
+      setTimeout(() => {
+        if (socket && socket.readyState === WebSocket.OPEN) {
+          socket.send(JSON.stringify({ message: userMsg.content }));
+        } else {
+          callCohereAPI(newMessages);
+        }
+      }, 0);
+      
       return newMessages;
     });
+    
     setInputValue("");
     setIsTyping(true);
   };
@@ -161,7 +167,11 @@ export function AIChatWidget({ onOpenBook }) {
       setMessages(prev => {
         const newMsgs = [...prev];
         const lastIndex = newMsgs.length - 1;
-        newMsgs[lastIndex] = { ...newMsgs[lastIndex], content: fullText };
+        if (newMsgs.length > 0 && newMsgs[lastIndex].role === "assistant") {
+          newMsgs[lastIndex] = { ...newMsgs[lastIndex], content: fullText };
+        } else {
+          newMsgs.push({ role: "assistant", content: fullText });
+        }
         return newMsgs;
       });
     } catch (e) {
@@ -174,7 +184,11 @@ export function AIChatWidget({ onOpenBook }) {
       setMessages(prev => {
         const newMsgs = [...prev];
         const lastIndex = newMsgs.length - 1;
-        newMsgs[lastIndex] = { ...newMsgs[lastIndex], content: errorMsg };
+        if (newMsgs.length > 0 && newMsgs[lastIndex].role === "assistant") {
+          newMsgs[lastIndex] = { ...newMsgs[lastIndex], content: errorMsg };
+        } else {
+          newMsgs.push({ role: "assistant", content: errorMsg });
+        }
         return newMsgs;
       });
     } finally {
